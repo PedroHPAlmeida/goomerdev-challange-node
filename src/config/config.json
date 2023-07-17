@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "app",
+    "password": "app",
+    "database": "goomer_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
