@@ -1,9 +1,9 @@
-const db = require("../models/");
+const Service = require("./Service"); 
 
-class RestaurantService {
+class RestaurantService extends Service {
 
-	static async findAll() {
-		return await db.Restaurant.findAll();
+	constructor() {
+		super("Restaurant");
 	}
 
 }
