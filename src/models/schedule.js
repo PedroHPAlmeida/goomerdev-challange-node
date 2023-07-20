@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 		static associate(models) {
-			Schedule.hasOne(models.Restaurant, { foreignKey: "restaurant_id" });
+			Schedule.belongsTo(models.Restaurant, { foreignKey: "restaurant_id" });
 		}
 	}
 	Schedule.init({
