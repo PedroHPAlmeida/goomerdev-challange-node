@@ -1,5 +1,5 @@
 "use strict";
-const daysOfWeekEnum = require("./daysOfWeek");
+const daysOfWeekEnum = require("../utils/daysOfWeek");
 const daysOfWeek = daysOfWeekEnum.getValues();
 const {
 	Model
