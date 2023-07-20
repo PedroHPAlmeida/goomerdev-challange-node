@@ -1,5 +1,5 @@
 "use strict";
-const daysOfWeekEnum = require("../models/daysOfWeek");
+const daysOfWeekEnum = require("../utils/daysOfWeek");
 const daysOfWeek = daysOfWeekEnum.getValues();
 
 /** @type {import('sequelize-cli').Migration} */
