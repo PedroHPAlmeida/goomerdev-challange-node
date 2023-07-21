@@ -18,6 +18,7 @@ class Service {
 		if (!entity) {
 			throw new NotFoundError(`${this.modelName} with id ${id} not found`);
 		}
+		return entity;
 	}
 
 	async create(entity) {
