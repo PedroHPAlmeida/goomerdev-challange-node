@@ -7,6 +7,6 @@ router
 	.post("/api/restaurants", RestaurantController.create)
 	.get("/api/restaurants", RestaurantController.findAll)
 	.get("/api/restaurants/:id", RestaurantController.findById)
-	.put("/api/restaurants/:id", RestaurantController.update);
+	.put("/api/restaurants/:id", RestaurantController.updateById);
 
 module.exports = router;

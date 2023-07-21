@@ -34,7 +34,7 @@ class RestaurantController {
 		}
 	}
 
-	static async update(req, res, next) {
+	static async updateById(req, res, next) {
 		const { id } = req.params;
 		const restaurant = req.body;
 		try {
