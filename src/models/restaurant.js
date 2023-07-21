@@ -17,12 +17,18 @@ module.exports = (sequelize, DataTypes) => {
 	Restaurant.init({
 		name: { 
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true
+			}
 		},
 		photo: DataTypes.BLOB,
 		address: { 
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true
+			}
 		}
 	}, {
 		sequelize,

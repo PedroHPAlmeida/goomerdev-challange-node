@@ -11,6 +11,10 @@ class Service {
 		return await this.model.findAll({ where: { ...where } }) ;
 	}
 
+	async create(entity) {
+		return await this.model.create(entity);
+	}
+
 }
 
 module.exports = Service;

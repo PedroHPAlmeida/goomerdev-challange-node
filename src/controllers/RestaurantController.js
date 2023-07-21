@@ -13,6 +13,16 @@ class RestaurantController {
 		}
 	}
 
+	static async create(req, res, next) {
+		const body = req.body;
+		try {
+			const restaurant = await restaurantService.create(body);
+			res.status(201).json(restaurant);
+		} catch (error) {
+			next(error);
+		}
+	}
+
 }
 
 module.exports = RestaurantController;
