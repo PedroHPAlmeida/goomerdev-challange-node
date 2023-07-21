@@ -6,6 +6,7 @@ const router = Router();
 router
 	.post("/api/restaurants", RestaurantController.create)
 	.get("/api/restaurants", RestaurantController.findAll)
-	.get("/api/restaurants/:id", RestaurantController.findById);
+	.get("/api/restaurants/:id", RestaurantController.findById)
+	.put("/api/restaurants/:id", RestaurantController.update);
 
 module.exports = router;

@@ -34,6 +34,17 @@ class RestaurantController {
 		}
 	}
 
+	static async update(req, res, next) {
+		const { id } = req.params;
+		const restaurant = req.body;
+		try {
+			await restaurantService.update(restaurant, { id: id });
+			res.status(204).send();
+		} catch (error) {
+			next(error);
+		}
+	}
+
 }
 
 module.exports = RestaurantController;
