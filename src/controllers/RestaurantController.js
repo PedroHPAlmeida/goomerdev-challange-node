@@ -1,4 +1,5 @@
 const { RestaurantService } = require("../services");
+
 const restaurantService = new RestaurantService();
 
 class RestaurantController {
@@ -9,6 +10,16 @@ class RestaurantController {
 			res.status(200).json(restaurants);
 		} catch (error) {
 			console.error(error);
+			next(error);
+		}
+	}
+
+	static async findById(req, res, next) {
+		const { id } = req.params;
+		try {
+			const restaurant = await restaurantService.findById(id);
+			res.status(200).json(restaurant);
+		} catch (error) {
 			next(error);
 		}
 	}

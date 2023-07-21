@@ -1,4 +1,6 @@
 const db = require("../models");
+const { NotFoundError } = require("../errors");
+
 
 class Service {
 
@@ -9,6 +11,13 @@ class Service {
 
 	async findAll(where = {}) {
 		return await this.model.findAll({ where: { ...where } }) ;
+	}
+
+	async findById(id) {
+		const entity = await this.model.findByPk(id);
+		if (!entity) {
+			throw new NotFoundError(`${this.modelName} with id ${id} not found`);
+		}
 	}
 
 	async create(entity) {
