@@ -5,6 +5,7 @@ const router = Router();
 
 router
 	.post("/api/restaurants/:restaurantId/products", ProductController.create)
-	.get("/api/restaurants/:restaurantId/products", ProductController.findAll);
+	.get("/api/restaurants/:restaurantId/products", ProductController.findAll)
+	.put("/api/restaurants/:restaurantId/products/:productId", ProductController.updateById);
 
 module.exports = router;

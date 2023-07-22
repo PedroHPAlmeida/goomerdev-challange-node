@@ -24,6 +24,17 @@ class ProductController {
 		}     
 	}
 
+	static async updateById(req, res, next) {
+		const { restaurantId, productId } = req.params;
+		const product = req.body;
+		try {
+			await productService.update(product, { id: Number(productId), restaurant_id: Number(restaurantId) });
+			res.status(204).send();
+		} catch (error) {
+			next(error);
+		}
+	}
+
 }
 
 module.exports = ProductController;
