@@ -4,6 +4,7 @@ const { ProductController } = require("../controllers");
 const router = Router();
 
 router
-	.post("/api/restaurants/:restaurantId/products", ProductController.create);
+	.post("/api/restaurants/:restaurantId/products", ProductController.create)
+	.get("/api/restaurants/:restaurantId/products", ProductController.findAll);
 
 module.exports = router;
