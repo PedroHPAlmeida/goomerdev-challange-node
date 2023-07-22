@@ -18,12 +18,18 @@ module.exports = (sequelize, DataTypes) => {
 	Product.init({
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true
+			}
 		},
 		photo: DataTypes.BLOB,
 		price: {
-			type: DataTypes.DECIMAL,
-			allowNull: false
+			type: DataTypes.DECIMAL(10, 2),
+			allowNull: false,
+			validate: {
+				notEmpty: true
+			}
 		}
 	}, {
 		sequelize,
