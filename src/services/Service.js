@@ -33,6 +33,17 @@ class Service {
 		}
 	}
 
+	async delete(where) {
+		if (!where || Object.keys(where).length < 1) {
+			throw new Error("It is not possible to delete a record without specifying the where clause");
+		}
+		const entities = await this.findAll(where);
+		if (entities.length === 0) {
+			throw new NotFoundError(`${this.modelName} not found`);
+		}
+		await this.model.destroy({ where: { ...where } });
+	}
+
 }
 
 module.exports = Service;

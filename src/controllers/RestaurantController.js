@@ -17,7 +17,7 @@ class RestaurantController {
 	static async findById(req, res, next) {
 		const { id } = req.params;
 		try {
-			const restaurant = await restaurantService.findById(id);
+			const restaurant = await restaurantService.findById(Number(id));
 			res.status(200).json(restaurant);
 		} catch (error) {
 			next(error);
@@ -38,7 +38,17 @@ class RestaurantController {
 		const { id } = req.params;
 		const restaurant = req.body;
 		try {
-			await restaurantService.update(restaurant, { id: id });
+			await restaurantService.update(restaurant, { id: Number(id) });
+			res.status(204).send();
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	static async deleteById(req, res, next) {
+		const { id } = req.params;
+		try {
+			await restaurantService.delete({ id: Number(id) });
 			res.status(204).send();
 		} catch (error) {
 			next(error);
