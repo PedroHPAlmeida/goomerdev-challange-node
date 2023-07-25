@@ -19,12 +19,24 @@ module.exports = (sequelize, DataTypes) => {
 		dayStart: {
 			type: DataTypes.ENUM,
 			values: daysOfWeek,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				isIn: {
+					args: [daysOfWeek],
+					msg: `The value should be one of: [${daysOfWeek}]`
+				},
+			}
 		},
 		dayEnd: {
 			type: DataTypes.ENUM,
 			values: daysOfWeek,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				isIn: {
+					args: [daysOfWeek],
+					msg: `The value should be one of: [${daysOfWeek}]`
+				},
+			}
 		},
 		timeStart: {
 			type: DataTypes.TIME,
