@@ -7,6 +7,19 @@ class RestaurantService extends Service {
 		super("Restaurant");
 	}
 
+	async findAll(where = {}) {
+		this.model.addScope("withSchedules", {
+			include: [
+				{
+					model: db.Schedule,
+					identifier: "aaa",
+					attributes: ["id", "firstDay", "lastDay", "openingTime", "closingTime"]
+				}
+			]
+		});
+		return await this.model.scope("withSchedules").findAll(where);
+	}
+
 	async create(restaurant) {
 		const schedules = restaurant["schedules"];
 		delete restaurant["schedules"];
