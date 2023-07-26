@@ -4,7 +4,7 @@ module.exports = {
 	WEDNESDAY: "quarta",
 	THURSDAY: "quinta",
 	FRIDAY: "sexta",
-	SATURDAY: "sabádo",
+	SATURDAY: "sábado",
 	SUNDAY: "domingo",
 
 	getValues() {
