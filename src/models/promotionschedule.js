@@ -1,6 +1,4 @@
 "use strict";
-const daysOfWeekEnum = require("../utils/daysOfWeek");
-const daysOfWeek = daysOfWeekEnum.getValues();
 const {
 	Model
 } = require("sequelize");
@@ -17,13 +15,11 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	PromotionSchedule.init({
 		dayStart: {
-			type: DataTypes.ENUM,
-			values: daysOfWeek,
+			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
 		dayEnd: {
-			type: DataTypes.ENUM,
-			values: daysOfWeek,
+			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
 		timeStart: {

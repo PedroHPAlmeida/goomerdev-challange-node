@@ -1,6 +1,4 @@
 "use strict";
-const daysOfWeekEnum = require("../utils/daysOfWeek");
-const daysOfWeek = daysOfWeekEnum.getValues();
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
@@ -17,13 +15,11 @@ module.exports = {
 				references: { model: "Promotions", key: "id" }
 			},
 			dayStart: {
-				type: Sequelize.DATE,
-				values: daysOfWeek,
+				type: Sequelize.DATEONLY,
 				allowNull: false
 			},
 			dayEnd: {
-				type: Sequelize.DATE,
-				values: daysOfWeek,
+				type: Sequelize.DATEONLY,
 				allowNull: false
 			},
 			timeStart: {
