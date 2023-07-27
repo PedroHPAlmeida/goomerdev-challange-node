@@ -1,10 +1,13 @@
+const db = require("../models");
 const Service = require("./Service");
 const RestaurantService = require("./RestaurantService");
 const ProductService = require("./ProductService");
+const PromotionScheduleService = require("./PromotionScheduleService");
 const { InvalidPromotionError } = require("../errors");
 
 const restaurantService = new RestaurantService();
 const productService = new ProductService();
+const promotionScheduleService = new PromotionScheduleService();
 
 class PromotionService extends Service {
 
@@ -14,7 +17,25 @@ class PromotionService extends Service {
 
 	async createPromotion(promotion, restaurantId, productId) {
 		await this.#validatePromotion(promotion, restaurantId, productId);
-		return await this.model.create({ ...promotion, product_id: productId });
+
+		const promotionToSave = {
+			description: promotion.description,
+			promotionalPrice: promotion.promotionalPrice
+		};
+
+		const schedules = promotion.schedules;
+
+		return db.sequelize.transaction(async (t) => {
+			const savedPromotion = await this.model.create({ ...promotionToSave, product_id: productId }, { transaction: t });
+			console.log("promotion_id", savedPromotion.id);
+			const savedSchedules = await Promise.all(schedules.map(schedule => {
+				const a = { ...schedule, promotion_id: savedPromotion.id };
+				console.log("schedule", a);
+				return promotionScheduleService.create(a, { transaction: t });
+			}));
+			savedPromotion.dataValues.schedules = savedSchedules;
+			return savedPromotion;
+		});
 	}
 
 	async #validatePromotion(promotion, restaurantId, productId) {

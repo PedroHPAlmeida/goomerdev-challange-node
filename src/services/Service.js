@@ -21,8 +21,8 @@ class Service {
 		return entity;
 	}
 
-	async create(entity) {
-		return await this.model.create(entity);
+	async create(entity, options = {}) {
+		return await this.model.create(entity, options);
 	}
 
 	async update(entity, where = {}) {
