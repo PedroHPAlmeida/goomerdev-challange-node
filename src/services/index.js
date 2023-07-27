@@ -1,9 +1,9 @@
 const RestaurantService = require("./RestaurantService");
 const ProductService = require("./ProductService");
-const PromotionService = require("./PromotionService");
+const ScheduleService = require("./ScheduleService");
 
 module.exports = {
 	RestaurantService,
 	ProductService,
-	PromotionService
+	ScheduleService
 };

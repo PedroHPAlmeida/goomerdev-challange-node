@@ -23,11 +23,11 @@ module.exports = {
 				allowNull: false
 			},
 			timeStart: {
-				type: Sequelize.DATE,
+				type: Sequelize.TIME,
 				allowNull: false
 			},
 			timeEnd: {
-				type: Sequelize.DATE,
+				type: Sequelize.TIME,
 				allowNull: false
 			},
 			createdAt: {
