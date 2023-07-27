@@ -17,11 +17,21 @@ module.exports = (sequelize, DataTypes) => {
 	Promotion.init({
 		description: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true
+			}
 		},
 		promotionalPrice: {
 			type: DataTypes.DECIMAL,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				isNumeric: true,
+				min: {
+					args: 0.5,
+					msg: "The min value for a promotion is 0.5"
+				}
+			}
 		}
 	}, {
 		sequelize,
