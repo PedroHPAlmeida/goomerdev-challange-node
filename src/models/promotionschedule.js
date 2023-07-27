@@ -16,19 +16,33 @@ module.exports = (sequelize, DataTypes) => {
 	PromotionSchedule.init({
 		dayStart: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+				isDate: true
+			}
 		},
 		dayEnd: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+				isDate: true
+			}
 		},
 		timeStart: {
 			type: DataTypes.TIME,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+			}
 		},
 		timeEnd: {
 			type: DataTypes.TIME,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+			}
 		}
 	}, {
 		sequelize,
