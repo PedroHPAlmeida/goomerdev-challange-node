@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
 		static associate(models) {
 			Promotion.belongsTo(models.Product, { foreignKey: "product_id" });
-			Promotion.hasMany(models.PromotionSchedule, { foreignKey: "promotion_schedule_id" });
+			Promotion.hasMany(models.PromotionSchedule, { foreignKey: "promotion_id" });
 		}
 	}
 	Promotion.init({
