@@ -2,7 +2,7 @@ const { BaseError, ValidationError, NotFoundError, InvalidPromotionError } = req
 const { ValidationError: ValidationErrorSeq} = require("sequelize");
 
 function handler(error, req, res, next) {
-	console.log(error);
+	console.log(`Error: ${error.message}`);
 	if (error instanceof ValidationErrorSeq) {
 		new ValidationError(error.errors).send(res);
 	} else if (error instanceof NotFoundError) {
