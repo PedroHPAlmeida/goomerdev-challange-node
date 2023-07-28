@@ -27,7 +27,6 @@ class PromotionService extends Service {
 
 		return db.sequelize.transaction(async (t) => {
 			const savedPromotion = await this.model.create({ ...promotionToSave, product_id: productId }, { transaction: t });
-			console.log("promotion_id", savedPromotion.id);
 			const savedSchedules = await Promise.all(schedules.map(schedule => {
 				return promotionScheduleService.create({ ...schedule, promotion_id: savedPromotion.id }, { transaction: t });
 			}));
