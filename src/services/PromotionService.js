@@ -29,9 +29,7 @@ class PromotionService extends Service {
 			const savedPromotion = await this.model.create({ ...promotionToSave, product_id: productId }, { transaction: t });
 			console.log("promotion_id", savedPromotion.id);
 			const savedSchedules = await Promise.all(schedules.map(schedule => {
-				const a = { ...schedule, promotion_id: savedPromotion.id };
-				console.log("schedule", a);
-				return promotionScheduleService.create(a, { transaction: t });
+				return promotionScheduleService.create({ ...schedule, promotion_id: savedPromotion.id }, { transaction: t });
 			}));
 			savedPromotion.dataValues.schedules = savedSchedules;
 			return savedPromotion;
@@ -44,6 +42,7 @@ class PromotionService extends Service {
 		if (promotion.promotionalPrice >= product.price) {
 			throw new InvalidPromotionError("Promotion price must be less than current price");
 		}
+		promotionScheduleService.validatePromotionSchedules(promotion.schedules);
 	}
 
 }
