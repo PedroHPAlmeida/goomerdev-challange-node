@@ -1,6 +1,7 @@
 const express = require("express");
 const restaurants = require("./restaurantRoutes");
 const products = require("./productRoutes");
+const promotions = require("./promotionRoutes");
 
 const routes = (app) => {
 	app.route("/").get((req, res) => {
@@ -8,7 +9,8 @@ const routes = (app) => {
 	});
 	app.use(express.json(),
 		restaurants,
-		products);
+		products,
+		promotions);
 };
 
 module.exports = routes;

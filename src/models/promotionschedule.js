@@ -1,6 +1,4 @@
 "use strict";
-const daysOfWeekEnum = require("../utils/daysOfWeek");
-const daysOfWeek = daysOfWeekEnum.getValues();
 const {
 	Model
 } = require("sequelize");
@@ -12,39 +10,39 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 		static associate(models) {
-			PromotionSchedule.belongsTo(models.Promotion, { foreignKey: "promotion_schedule_id" });
+			PromotionSchedule.belongsTo(models.Promotion, { foreignKey: "promotion_id" });
 		}
 	}
 	PromotionSchedule.init({
 		dayStart: {
-			type: DataTypes.ENUM,
-			values: daysOfWeek,
+			type: DataTypes.DATEONLY,
 			allowNull: false,
 			validate: {
-				isIn: {
-					args: [daysOfWeek],
-					msg: `The value should be one of: [${daysOfWeek}]`
-				},
+				notEmpty: true,
+				isDate: true
 			}
 		},
 		dayEnd: {
-			type: DataTypes.ENUM,
-			values: daysOfWeek,
+			type: DataTypes.DATEONLY,
 			allowNull: false,
 			validate: {
-				isIn: {
-					args: [daysOfWeek],
-					msg: `The value should be one of: [${daysOfWeek}]`
-				},
+				notEmpty: true,
+				isDate: true
 			}
 		},
 		timeStart: {
 			type: DataTypes.TIME,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+			}
 		},
 		timeEnd: {
 			type: DataTypes.TIME,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				notEmpty: true,
+			}
 		}
 	}, {
 		sequelize,
